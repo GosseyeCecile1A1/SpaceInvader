@@ -7,7 +7,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+
+
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -48,8 +51,30 @@ public class SpaceInvaderView extends View {
 		init();
 	}
 
-
+	 public Bitmap loadImage(int id, Drawable tile) {
 	
+		int x = tile.getIntrinsicWidth();
+		int y = tile.getIntrinsicHeight();
+        Bitmap bitmap = Bitmap.createBitmap(x, y, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        tile.setBounds(0, 0, x, y);
+        tile.draw(canvas);
+        
+        return bitmap;
+    }
+	/*
+	 private void initSpaceInvaderView() {
+       setFocusable(true);
+
+       this.getContext().getResources().getDrawable();
+        
+       resetImage(4);
+       loadImage(ALIEN, r.getDrawable(R.drawable.alien1));
+       loadImage(IC_LAUNCHER, r.getDrawable(R.drawable.ic_launcher));
+       loadImage(MISSILE, r.getDrawable(R.drawable.missile2));
+    	
+    }
+	*/
 
 	void init(){
 		paint = new Paint();
