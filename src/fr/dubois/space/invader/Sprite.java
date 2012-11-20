@@ -17,6 +17,7 @@ public abstract class Sprite {
 		this.x = x;
 		this.y = y;
 		paint = new Paint();
+		
 	}
 
 	public void draw(Canvas canvas) {
