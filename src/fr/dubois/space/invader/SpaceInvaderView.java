@@ -35,6 +35,8 @@ public class SpaceInvaderView extends View {
 	private Paint paint; // Style pour le texte	
 	private String text; // texte à afficher
 
+	
+	private Bitmap alien;
 
 	public SpaceInvaderView(Context context) {
 		super(context);
@@ -51,30 +53,23 @@ public class SpaceInvaderView extends View {
 		init();
 	}
 
-	 public Bitmap loadImage(int id, Drawable tile) {
+	 public Bitmap loadImage(int id) {
 	
-		int x = tile.getIntrinsicWidth();
-		int y = tile.getIntrinsicHeight();
+		 Drawable tmp =  this.getContext().getResources().getDrawable(id);
+		int x = tmp.getIntrinsicWidth();
+		int y = tmp.getIntrinsicHeight();
         Bitmap bitmap = Bitmap.createBitmap(x, y, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        tile.setBounds(0, 0, x, y);
-        tile.draw(canvas);
+        tmp.setBounds(0, 0, x, y);
+        tmp.draw(canvas);
+
         
         return bitmap;
     }
-	/*
-	 private void initSpaceInvaderView() {
-       setFocusable(true);
+	 
+  
+     
 
-       this.getContext().getResources().getDrawable();
-        
-       resetImage(4);
-       loadImage(ALIEN, r.getDrawable(R.drawable.alien1));
-       loadImage(IC_LAUNCHER, r.getDrawable(R.drawable.ic_launcher));
-       loadImage(MISSILE, r.getDrawable(R.drawable.missile2));
-    	
-    }
-	*/
 
 	void init(){
 		paint = new Paint();
@@ -84,6 +79,9 @@ public class SpaceInvaderView extends View {
 		paint.setTextSize(36);
 		paint.setTextAlign(Paint.Align.CENTER);
 		text = "Texte";
+		
+		
+		alien = loadImage(R.drawable.alien1);
 	}
 
 
