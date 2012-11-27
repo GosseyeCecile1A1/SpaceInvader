@@ -7,11 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.example.android.snake.SnakeView;
-import com.example.android.snake.SnakeView.RefreshHandler;
-
-
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
