@@ -38,7 +38,10 @@ public class SpaceInvaderView extends View {
 	private Bitmap alienbitmap;
 
 	Alien alien;
+	Matrix transform;
 
+	private Bitmap shipbitmap;
+	Ship ship;
 
 	public SpaceInvaderView(Context context) {
 		super(context);
@@ -70,7 +73,11 @@ public class SpaceInvaderView extends View {
     }
 	 
   
-     
+	 public void Matrix () {
+		
+	}
+	 
+   
 
 
 	  private RefreshHandler mRedrawHandler = new RefreshHandler();
@@ -93,7 +100,7 @@ public class SpaceInvaderView extends View {
 	    
 	       
 	void init(){
-		alien = new Alien (null,0,0);
+		
 		paint = new Paint();
 		paint.setStyle(Style.STROKE);
 		paint.setColor(Color.YELLOW);
@@ -105,7 +112,12 @@ public class SpaceInvaderView extends View {
 		
 		
 		alienbitmap = loadImage(R.drawable.alien1);
-
+		alien = new Alien (alienbitmap,0,0);
+		
+		shipbitmap =loadImage(R.drawable.ship);
+		ship = new Ship (shipbitmap,100,200);
+		
+		
 		this.update();
 		
 		
@@ -117,7 +129,8 @@ public class SpaceInvaderView extends View {
 
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		alien.act();
+		ship.act();
 	}
 
 	@Override
@@ -125,11 +138,21 @@ public class SpaceInvaderView extends View {
 		super.onDraw(canvas);
 		canvas.drawRGB(0, 0, 0);
 		canvas.drawRect(0, 0, TARGET_WIDTH-1, TARGET_HEIGHT-1, paint);
+		alien.draw(canvas);
+		ship.draw(canvas);
 		if (text != null){
 			canvas.drawText(text, canvas.getWidth()/2,canvas.getHeight()/2, paint);
+			
 		}
 	}
 
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		// TODO Auto-generated method stub
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+	}
 
 	private int computeSize(int spec,int def){
 		int mode = View.MeasureSpec.getMode(spec);
